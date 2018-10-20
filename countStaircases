@@ -1,0 +1,42 @@
+public class Staircases{
+    
+    
+    int count(int[][] stairs,int N){
+        for(int i=0;i<=N;i++){
+            for(int j=0;j<=N;j++){
+            stairs[i][j]=0;
+        } 
+        }
+        stairs[3][2]=stairs[4][2]=1;
+        for(int i=5;i<=N;i++){
+            for(int j=2;j<=i;j++)
+            {
+                if(j==2){
+                    stairs[i][j]=stairs[i-j][j]+1;
+                    
+                }
+                else{
+                    stairs[i][j]=stairs[i-j][j]+stairs[i-j][j-1];
+                    
+                }
+                
+            }
+        }
+     int cnt=0;
+     for(int i=0;i<=N;i++){
+     cnt+=stairs[N][i];    
+         
+     }
+     return cnt;
+        
+    }
+    public static void main(String[] args){
+        Staircases s=new Staircases();
+        int N=173;
+        int[][] stairs=new int[N+1][N+1];//first index is boxes   second is stairs
+        System.out.println(s.count(stairs,N));
+    }
+    
+    
+    
+}
